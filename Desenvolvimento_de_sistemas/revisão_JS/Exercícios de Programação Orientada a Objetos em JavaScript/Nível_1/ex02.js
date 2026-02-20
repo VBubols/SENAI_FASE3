@@ -19,15 +19,15 @@ class Aluno{
         let notaTotal = this.#calcularTotal()
         let resultado = notaTotal / this.notas.length
         
-        return resultado.toFixed(2)
+        return `Nota de ${this.nome}: ${resultado.toFixed(2)}`
     }
 
     situacao(){
         let notaFinal = this.calcularMedia()
 
-        const situacao = notaFinal >= 7 ? 'Aprovado' : 'Reprovado'
+        const situacao = notaFinal >= 7 ? 'Aprovado(a)' : 'Reprovado(a)'
 
-        return situacao
+        return `${this.nome}: ${situacao}`
     }
 }
 
