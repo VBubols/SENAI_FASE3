@@ -1,3 +1,3 @@
-import { leitorArquivo } from './Nivel_1/ex01.js';
+import { leitorLog } from './Nivel_1/LeitorLog.js';
 
-leitorArquivo();
+leitorLog();
