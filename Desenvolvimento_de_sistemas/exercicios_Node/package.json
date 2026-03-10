@@ -1,0 +1,12 @@
+{
+  "name": "node_pkg",
+  "version": "1.0.0",
+  "description": "pkg para exercicios",
+  "license": "ISC",
+  "author": "VBubols",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
