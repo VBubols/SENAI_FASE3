@@ -15,5 +15,3 @@ export async function normalizarCaminhos(){
         console.log(`Erro: ${error}`);
     }
 }
-
-normalizarCaminhos()
