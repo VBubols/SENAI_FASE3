@@ -1,4 +1,4 @@
-import { frutas } from '../frutas.js'
+import { frutas } from '../DB/frutas.js'
 
 export function listarFrutas(){
     return (frutas)

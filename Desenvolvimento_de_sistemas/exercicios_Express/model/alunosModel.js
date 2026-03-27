@@ -1,4 +1,4 @@
-import { alunos } from '../alunos.js'
+import { alunos } from '../DB/alunos.js'
 
 export function listarAlunos(){
     return (alunos)
