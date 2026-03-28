@@ -1,0 +1,22 @@
+export const produtos = [
+    { id: 1, nome: "Smartphone Galaxy S23", categoria: "Eletrônicos", preco: 4500.00 },
+    { id: 2, nome: "Notebook Dell Inspiron", categoria: "Informática", preco: 3800.00 },
+    { id: 3, nome: "Fone de Ouvido Bluetooth", categoria: "Acessórios", preco: 250.00 },
+    { id: 4, nome: "Monitor 24 Polegadas", categoria: "Informática", preco: 900.00 },
+    { id: 5, nome: "Teclado Mecânico RGB", categoria: "Acessórios", preco: 350.00 },
+    { id: 6, nome: "Mouse Gamer", categoria: "Acessórios", preco: 180.00 },
+    { id: 7, nome: "Smart TV 55' 4K", categoria: "Eletrônicos", preco: 2800.00 },
+    { id: 8, nome: "Cadeira Ergonômica", categoria: "Móveis", preco: 1200.00 },
+    { id: 9, nome: "Mesa de Escritório", categoria: "Móveis", preco: 650.00 },
+    { id: 10, nome: "Impressora Multifuncional", categoria: "Informática", preco: 850.00 },
+    { id: 11, nome: "Tablet iPad Air", categoria: "Eletrônicos", preco: 5200.00 },
+    { id: 12, nome: "Roteador Wi-Fi 6", categoria: "Informática", preco: 450.00 },
+    { id: 13, nome: "Smartwatch Series 8", categoria: "Eletrônicos", preco: 2100.00 },
+    { id: 14, nome: "Câmera DSLR Canon", categoria: "Eletrônicos", preco: 3400.00 },
+    { id: 15, nome: "Caixa de Som JBL", categoria: "Acessórios", preco: 700.00 },
+    { id: 16, nome: "SSD 1TB NVMe", categoria: "Informática", preco: 400.00 },
+    { id: 17, nome: "Webcam Full HD", categoria: "Acessórios", preco: 220.00 },
+    { id: 18, nome: "Suporte para Monitor", categoria: "Móveis", preco: 150.00 },
+    { id: 19, nome: "HD Externo 2TB", categoria: "Informática", preco: 500.00 },
+    { id: 20, nome: "Microfone Condensador", categoria: "Acessórios", preco: 600.00 }
+];
