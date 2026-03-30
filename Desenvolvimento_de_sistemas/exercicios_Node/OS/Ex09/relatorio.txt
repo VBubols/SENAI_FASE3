@@ -1,0 +1,1 @@
+{"home":"C:\\Users\\vitor","uptimePC":907885.375,"hostnamePC":"DESKTOP-PVP25ES"}
