@@ -1,4 +1,4 @@
-import { readFile, writeFile, access } from 'fs/promises'
+import { writeFile, access } from 'fs/promises'
 import { homedir, uptime, hostname } from 'node:os'
 
 async function verificarArquivo(){

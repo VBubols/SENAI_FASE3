@@ -20,5 +20,3 @@ export async function criarArquivos(){
         console.log(`Erro: ${error}`)
     }
 }
-
-criarArquivos()

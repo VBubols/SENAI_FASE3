@@ -1,12 +1,19 @@
 import { readdir, rename, mkdir } from 'fs/promises'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-export async function OrganizarArquivos(){
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+export async function organizarArquivos(){
     try {
-        await mkdir('./Textos', {recursive: true})
-        const arquivos = await readdir('./Arquivos_para_organizar')
+        const textos = join(__dirname, 'Textos')
+        const origem = join(__dirname, 'Arquivos_para_organizar')
+
+        await mkdir(textos, {recursive: true})
+        const arquivos = await readdir(origem)
         for(const arquivo of arquivos){
             if(arquivo.endsWith('.txt')){
-                await rename(`./Arquivos_para_organizar/${arquivo}`, `./Textos/${arquivo}`)
+                await rename(join(origem, arquivo), join(textos, arquivo))
                 console.log(`Arquivo: ${arquivo} movido para Textos`)
             }
         }

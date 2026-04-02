@@ -14,5 +14,3 @@ export async function identificarAmbiente(){
         console.log(`ERRO: ${error}`)
     }
 }
-
-identificarAmbiente()

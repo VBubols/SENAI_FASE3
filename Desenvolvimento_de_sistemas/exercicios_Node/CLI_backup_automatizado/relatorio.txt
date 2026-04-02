@@ -1,0 +1,5 @@
+{
+  "data": "01/04/2026, 20:14:35",
+  "arquivosCopiados": 3,
+  "tamanhoTotal": "566 bytes"
+}
