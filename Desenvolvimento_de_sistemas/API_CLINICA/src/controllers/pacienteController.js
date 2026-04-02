@@ -5,6 +5,19 @@ export function listarPacientesController(req, res){
     return res.status(200).json(pacientesLista)
 }
 
+export function listarPacientesIdController(req, res) {
+    const {id} = req.params
+    if(!id){
+        return res.status(404).json({mensagem: "Não foi possível processar a requisição!"})
+    }
+
+    const resultListId = model.listarPacientesId(id)
+    if(!resultListId){
+        return res.status(404).json({mensagem: "Não foi possível processar a requisição!"})
+    }
+    return res.status(200).json(resultListId)
+}
+
 export function adicionarPacientesController(req, res){
     const {nome, telefone} = req.body
     if(!nome){

@@ -4,5 +4,6 @@ import express from 'express'
 const router = express.Router()
 
 router.get('/', controller.listarMedicosController)
+router.get('/:id', controller.listarMedicosIdController)
 
 export default router
