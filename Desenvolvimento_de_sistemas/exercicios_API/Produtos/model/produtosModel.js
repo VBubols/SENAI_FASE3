@@ -33,14 +33,14 @@ export async function criarProduto(nome, categoria, preco, quantidade){
     }
 }
 
-export async function atualizarProduto(id, novoNome, novaCategoria, novoPreco, novaQuantidade){
+export async function atualizarProduto(id, nome, categoria, preco, quantidade){
     try {
         const query = `
             UPDATE produtos
             SET nome = $1, categoria = $2, preco = $3, quantidade = $4
             WHERE id = $5
             RETURNING *;`;
-        const values = [novoNome, novaCategoria, novoPreco, novaQuantidade, id];
+        const values = [nome, categoria, preco, quantidade, id];
         const result = await pool.query(query, values);
 
         if(result.rows.length === 0){

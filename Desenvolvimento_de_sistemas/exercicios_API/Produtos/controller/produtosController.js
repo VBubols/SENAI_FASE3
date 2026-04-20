@@ -45,20 +45,20 @@ export async function criarProdutoController(req, res) {
     }
 }
 
-//ATUALIZAR PARA RETIRAR O ID DA URL E NAO DO BODY
 export async function atualizarProdutoController(req, res) {
     try {
-        const { id, novoNome, novaCategoria, novoPreco, novaQuantidade } = req.body;
-        if(!id || !novoNome || !novaCategoria || !novoPreco || !novaQuantidade){
+        const { id } = req.params;
+        const { nome, categoria, preco, quantidade } = req.body;
+        
+        if(!id){
+            return res.status(404).json({ message: 'Produto não encontrado' });
+        }
+        
+        if(!nome || !categoria  || !preco || !quantidade) {
             return res.status(404).json({mensagem: 'Requisição incompleta!'})
         }
 
-        const produtoExistente = await model.buscarProdutoId(id);
-        if(!produtoExistente){
-            return res.status(404).json({ message: 'Produto não encontrado' });
-        }
-
-        const result = await model.atualizarProduto(id, novoNome, novaCategoria, novoPreco, novaQuantidade);
+        const result = await model.atualizarProduto(id, nome, categoria, preco, quantidade);
         return res.status(200).json(result);
     } catch (error) {
         return res.status(500).json({ error: error.message })

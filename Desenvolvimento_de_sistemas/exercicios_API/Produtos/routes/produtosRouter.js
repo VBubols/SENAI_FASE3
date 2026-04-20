@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', controller.buscarTodosController);
 router.get('/:id', controller.buscarProdutoIdController);
 router.post('/', controller.criarProdutoController);
-router.put('/', controller.atualizarProdutoController);
+router.put('/:id', controller.atualizarProdutoController);
 router.delete('/:id', controller.deletarProdutoController);
 
 export default router;
