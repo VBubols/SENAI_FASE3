@@ -1,3 +1,4 @@
+-- Active: 1776450244534@@127.0.0.1@5432@tarefas_app
 CREATE DATABASE tarefas_app;
 
 -- Tabela de usuários

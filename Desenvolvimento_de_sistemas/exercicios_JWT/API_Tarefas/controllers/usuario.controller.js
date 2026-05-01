@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import * as model from '../models/clientesModel.js';
 
-export async function cadastrarCliente(req, res){
+export async function cadastrar(req, res){
     const { nome, email, senha } = req.body;
 
     try {
@@ -11,7 +11,7 @@ export async function cadastrarCliente(req, res){
             return res.status(400).json({mensagem: 'Usuário já existe'})
         }
 
-        const user = await model.cadastrarCliente(nome, email, senha);
+        const user = await model.criar(nome, email, senha);
         delete user.senha; //necessário deletar a senha não criptografada
 
         return res.status(201).json({
@@ -19,7 +19,7 @@ export async function cadastrarCliente(req, res){
             user
         });
     } catch (error) {
-        console.log(`Erro no controller cadastrarCliente: ${error}`)
+        console.log(`Erro no controller criar: ${error}`)
     }
 };
 
