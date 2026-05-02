@@ -6,7 +6,7 @@ export async function criar(nome, email, senha){
         //Primeiro converter a senha em hash
         const senhaHash = await bcrypt.hash(senha, 10);
         const query = `
-        INSERT INTO clientes (nome, email, senha)
+        INSERT INTO clientes (nome, email, senha_hash)
         VALUES ($1, $2, $3)
         RETURNING *;
         `;
