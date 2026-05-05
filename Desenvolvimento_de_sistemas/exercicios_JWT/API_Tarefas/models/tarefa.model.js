@@ -1,28 +1,35 @@
 import db from '../config/db.js';
-import bcrypt from 'bcryptjs';
 
-export async function cadastrarCliente(nome, email, senha){
+export async function buscarPorUsuario(usuarioId) {
     try {
-        //Primeiro converter a senha em hash
-        const senhaHash = await bcrypt.hash(senha, 10);
-        const query = `
-        INSERT INTO clientes (nome, email, senha)
-        VALUES ($1, $2, $3)
-        RETURNING *;
-        `;
-        const values = [nome, email, senhaHash];
-        const result = await db.query(query, values);
-        return result.rows[0];
+        const usuario = await db.query('SELECT * FROM usuarios WHERE id = $1', [usuarioId]);
+        return usuario.rows[0];
     } catch (error) {
-        console.log(`Erro no model cadastrarCliente: ${error}`)
+        console.log(error);
     }
-}
+};
 
-export async function buscarPorEmail(email){
+export async function criarTarefa(descricao, usuarioId) {
     try {
-        const result = await db.query(`SELECT * FROM clientes WHERE email = $1`, [email]);
-        return result.rows[0];
+        const tarefa = await db.query(`
+            INSERT INTO tarefas (descricao, usuario_id)
+            VALUES ($1, $2)
+            RETURNING *`, [descricao, usuarioId]);
+        return tarefa.rows[0];
     } catch (error) {
-        console.log(`Erro no model buscarPorEmail: ${error}`)
+        console.log(error);
+    }
+};
+
+export async function concluirTarefa(id, usuarioId) {
+    try {
+        const tarefaConcluida = await db.query(`
+            UPDATE tarefas
+            SET concluida = TRUE
+            WHERE id = $1, usuario_id = $2
+            RETURNING *`, [id, usuarioId]);
+        return tarefaConcluida.rows[0];
+    } catch (error) {
+        console.log(error);
     }
 }

@@ -1,60 +1,39 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import * as model from '../models/clientesModel.js';
+import * as model from '../models/tarefa.model.js';
 
-export async function cadastrarCliente(req, res){
-    const { nome, email, senha } = req.body;
-
+export async function listar(req, res) {
     try {
-        const existingUser = await model.buscarPorEmail(email);
-        if(existingUser){
-            return res.status(400).json({mensagem: 'Usuário já existe'})
-        }
+        const userList = await model.buscarPorUsuario(req.user.id);
+        if(!userList){
+            return res.status(404).json({mensagem: 'Não foi possível localizar o usuário!'});
+        };
 
-        const user = await model.cadastrarCliente(nome, email, senha);
-        delete user.senha; //necessário deletar a senha não criptografada
-
-        return res.status(201).json({
-            mensagem: 'Usuário criado com sucesso!',
-            user
-        });
+        return res.status(200).json(userList);
     } catch (error) {
-        console.log(`Erro no controller cadastrarCliente: ${error}`)
+        return res.status(500).json(`Error: ${error}`);
     }
 };
 
-export async function login(req, res) {
-    const { email, senha } = req.body;
-
+export async function criar(req, res) {
     try {
-        const user = await model.buscarPorEmail(email);
-        if(!user){
-            return res.status(404).json({mensagem: 'Usuário não encontrado'})
+        const tarefa = await model.criarTarefa(req.body.descricao, req.user.id);
+        if(!tarefa){
+            return res.status(400).json({mensagem: 'Erro ao criar tarefa!'});
         };
 
-        const compararSenha = bcrypt.compare(senha, user.senha);
-        if(!compararSenha){
-            return res.status(400).json({mensagem: 'Credenciais inválidas'})
-        };
-        delete user.senha;
-
-        const userToken = jwt.sign(
-            user,
-            process.env.JWT_SECRET,
-            { expiresIn: process.env.JWT_EXPIRES_IN }
-        );
-
-        res.json({token: userToken, user: user});
-
+        return res.status(201).json(tarefa);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return res.status(500).json(`Error: ${error}`);
     }
 };
 
-export async function perfil(req, res) {
+export async function concluir(req, res) {
     try {
-        return res.status(200).json(req.user);
+        const tarefaConcluida = await model.concluirTarefa(req.params.id, req.user.id);
+        if(!tarefaConcluida || tarefaConcluida.rowCount == 0 ){
+            return res.status(400).json({mensagem: 'Não foi possível concluir a tarefa!'});
+        };
+        return res.status(200).json(tarefaConcluida);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return res.status(500).json(`Error: ${error}`);
     }
 }
