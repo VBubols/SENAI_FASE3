@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import * as model from '../models/clientesModel.js';
+import * as model from '../models/usuario.model.js';
 
 export async function cadastrar(req, res){
     const { nome, email, senha } = req.body;

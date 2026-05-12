@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import routerUser from './routes/usuario.routes.js';
-import routerTarefa from './routes/tarefa.routes';
+import routerTarefa from './routes/tarefa.routes.js';
 
 dotenv.config();
 

@@ -6,7 +6,7 @@ export async function criar(nome, email, senha){
         //Primeiro converter a senha em hash
         const senhaHash = await bcrypt.hash(senha, 10);
         const query = `
-        INSERT INTO clientes (nome, email, senha_hash)
+        INSERT INTO usuarios (nome, email, senha_hash)
         VALUES ($1, $2, $3)
         RETURNING *;
         `;
@@ -20,7 +20,7 @@ export async function criar(nome, email, senha){
 
 export async function buscarPorEmail(email){
     try {
-        const result = await db.query(`SELECT * FROM clientes WHERE email = $1`, [email]);
+        const result = await db.query(`SELECT * FROM usuarios WHERE email = $1`, [email]);
         return result.rows[0];
     } catch (error) {
         console.log(`Erro no model buscarPorEmail: ${error}`)
