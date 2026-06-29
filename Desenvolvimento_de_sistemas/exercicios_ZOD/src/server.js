@@ -1,8 +1,10 @@
-import express from 'express';
-
+import express, {json} from "express"
+import productController from "./controllers/productController.js";
+import productValidator from "./middlewares/productValidator.js";
+import productSchema from "./schemas/productSchema.js";
 const app = express();
-app.use(express.json());
+app.use(json())
 
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000")
-});
+app.post('/products', productValidator(productSchema), productController)
+
+app.listen(3000, () => {console.log("servidor rodando na porta 3000")})
