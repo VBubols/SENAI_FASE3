@@ -1,0 +1,5 @@
+services:
+  tests:
+    build: .
+    container_name: ci-pipeline-tests
+    command: npm run test
